@@ -9,7 +9,7 @@ function App() {
 
   const loadAnimals = () => {
     axios
-      .get("https://sapphire-flasky.fly.dev/animals")
+      .get("http://127.0.0.1:5000/animals")
       .then((response) => {
         const initialAnimalData = [];
         response.data.forEach((animal) => {
@@ -50,8 +50,7 @@ function App() {
   }
 
   const updateDelete = (animalId) => {
-    axios
-      .delete(`https://sapphire-flasky.fly.dev/animals/${animalId}`)
+    axios.delete(`http://127.0.0.1:5000/animals/${animalId}`)
       .then((response) => {
         const updatedAnimals = animals.map((animal) => {
           if (animal.id !== animalId) {
@@ -68,7 +67,7 @@ function App() {
       })
       .catch((error) => {
         // if it's not successful, print out error details for now
-        console.log("could not delete animal", error, error.response);
+        console.log('could not delete animal', error, error.response);
       });
   }
 
@@ -80,16 +79,17 @@ function App() {
     }
 
     axios
-      .post("https://sapphire-flasky.fly.dev/animals", updateNewAnimalInfo)
+      .post("http://127.0.0.1:5000/animals", updateNewAnimalInfo)
       .then(() => {
         // TWO OPTIONS:
-        //  make another GET request to refresh the page <-- DO THIS!
+        //  make another GET request to refresh the page <-- DO THIS! 
         // loadAnimals();
 
         // update the animals state to refresh the page
         const newAnimalsArray = [...animals];
         newAnimalsArray.push(newAnimalInfo);
-        setAnimals(newAnimalsArray);
+        setAnimals(newAnimalsArray)
+
       })
       .catch((error) => {
         console.log(error);

@@ -4,12 +4,14 @@ import AnimalList from './components/AnimalList';
 import NewAnimalForm from "./components/NewAnimalForm";
 import axios from 'axios';
 
+FLASK_SERVER = "https://sapphire-flasky-frontend.vercel.app/";
+
 function App() {
   const [animals, setAnimals] = useState([]);
 
   const loadAnimals = () => {
     axios
-      .get("http://127.0.0.1:5000/animals")
+      .get(`${FLASK_SERVER}/animals`)
       .then((response) => {
         const initialAnimalData = [];
         response.data.forEach((animal) => {
@@ -50,7 +52,7 @@ function App() {
   }
 
   const updateDelete = (animalId) => {
-    axios.delete(`http://127.0.0.1:5000/animals/${animalId}`)
+    axios.delete(`${FLASK_SERVER}/animals/${animalId}`)
       .then((response) => {
         const updatedAnimals = animals.map((animal) => {
           if (animal.id !== animalId) {
@@ -79,7 +81,7 @@ function App() {
     }
 
     axios
-      .post("http://127.0.0.1:5000/animals", updateNewAnimalInfo)
+      .post(`${FLASK_SERVER}/animals`, updateNewAnimalInfo)
       .then(() => {
         // TWO OPTIONS:
         //  make another GET request to refresh the page <-- DO THIS! 

@@ -4,7 +4,7 @@ import AnimalList from './components/AnimalList';
 import NewAnimalForm from "./components/NewAnimalForm";
 import axios from 'axios';
 
-FLASK_SERVER = "https://sapphire-flasky-frontend.vercel.app/";
+FLASK_SERVER = "https://sapphire-flasky-frontend.vercel.app";
 
 function App() {
   const [animals, setAnimals] = useState([]);
